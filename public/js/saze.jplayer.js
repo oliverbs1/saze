@@ -1,14 +1,5 @@
 var saze = saze || {};
 
-saze.init = function(){
-  saze.dom();
-  saze.jplayer();
-}
-
-saze.dom = function(){
-//    $( ":mobile-pagecontainer" ).pagecontainer( "load", "page2.html", { role: "page" } );
-//    $( ":mobile-pagecontainer" ).pagecontainer( "load", "index.html", { role: "page" } );
-}
 saze.jplayer = function(){
  $(function(){
     $("#jquery_jplayer_1").jPlayer({
