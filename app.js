@@ -1,14 +1,18 @@
 var httpPort = 1316;
 
-var express = require('express'),
+var fs = require('fs'),
+    express = require('express'),
     ejs = require('ejs'),
     session = require('express-session'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mysql = require('mysql');
 
-//var app = express(__dirname+'/public');
 var app = express();
 
 app.set('view engine', 'ejs');
+app.use('/', express.static(__dirname+'/public/'));
+// For now granted access to all the songs on the server
+app.use('/tracks/', express.static(__dirname+'/user-data/tracks'));
 app.use('/', express.static(__dirname+'/public/'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
@@ -16,6 +20,7 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+
 
 app
   .get('/', function(req, res, next){

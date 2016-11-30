@@ -1,6 +1,7 @@
 var saze = saze || {};
 
+// All the initialisation of components
 saze.init = function(){
-  saze.dom();
-  if(saze.jplayer !== undefined) saze.jplayer();
+  saze.dom.init();
+  if(saze.jplayer !== undefined) saze.jplayer.init();
 }
