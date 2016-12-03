@@ -53,8 +53,8 @@ app
       if(response) res.redirect('/'); // INDIQUER SUR LA PAGE HOME QUE LE PASSWORD EST DEJA PRIS
     });
     // Add a user in the database
-//    userModel/add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
-//    res.redirect('/');
+    userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
+    res.redirect('/');
   })
   .post('/login', function(req, res, next){
     req.body.username;
