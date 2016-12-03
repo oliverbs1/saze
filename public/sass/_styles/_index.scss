@@ -7,10 +7,16 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  .form-container .ui-btn {
+  .form-container input:not(:nth-child(3)), button {
     width: 20% !important;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    
   }
+  .form-container input[data-type="range"] {
+    width: 8% !important;
+  }
+//  .ui-slider-handle {
+//    width: 20px !important;
+//  }
 }
