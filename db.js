@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-module.exports = function(callback){
+module.exports = function(queryCallback, endCallback = undefined){
   var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -10,6 +10,8 @@ module.exports = function(callback){
   db.connect(function(err){
     if(err) throw err;
   });
-  callback(db);
-  db.end();
+  queryCallback(db);
+  db.end(function(){
+    if(endCallback !== undefined) endCallback(db);
+  });
 }

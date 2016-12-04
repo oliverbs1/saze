@@ -45,16 +45,29 @@ app
         if(typeof data[prop] !== 'string' || data[prop].length >= 42) res.redirect('/');
       }
     }
-    // Check the availability
-    userModel.isset('email', data.email, function(response){
-      if(response) res.redirect('/'); // INDIQUER SUR LA PAGE HOME QUE L'EMAIL EST DEJA PRIS
+    // Check the availability of email and username
+    var usernameIsValid;
+    var emailIsValid;
+    userModel.isset('email', data.email, 
+      function(response){
+        if(response) emailIsValid = false;
+        else emailIsValid = true;
+      }, 
+      function(){
+        userModel.isset('username', data.username,
+          function(response){
+            if(response) usernameIsValid = false;
+            else usernameIsValid = true;
+          },
+          function(){
+            // Add a user in the database
+            if(usernameIsValid === true && emailIsValid === true) {
+              userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
+              res.redirect('/');
+            }
+            else res.redirect('/');
+        });
     });
-    userModel.isset('username', data.username, function(response){
-      if(response) res.redirect('/'); // INDIQUER SUR LA PAGE HOME QUE LE PASSWORD EST DEJA PRIS
-    });
-    // Add a user in the database
-    userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
-    res.redirect('/');
   })
   .post('/login', function(req, res, next){
     req.body.username;
