@@ -71,7 +71,7 @@ app
   })
   .post('/login', function(req, res, next){
     req.body.username;
-    req.body.
+    req.body.password;
     console.log(req.body);
   })
   .get('/home', function(req, res, next){
