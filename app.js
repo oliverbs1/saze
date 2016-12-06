@@ -34,17 +34,26 @@ app
     if(req.session.username === undefined) res.render('index.ejs');
     else res.redirect('/home');
   })
+  .get('/home', function(req, res, next){
+    console.log(req.session);
+    res.render('home.ejs');
+  })
+  .get('/playlist', function(req, res, next){
+    res.render('playlist.ejs');
+  })
+  .get('/search', function(req, res, next){
+    res.render('search.ejs');
+  })
   .post('/signup', function(req, res, next){
     var userModel = require(__dirname+'/models/user');
     // Store the data of the signup form
     var data = req.body;
-  console.log(data.username);
-  console.log(data.username.length);
       // Hash the password
     var saltRounds = 12;
     bcrypt.hash(data.password, saltRounds, function(err, hash){
       if(err) throw err;
-      data.password = hash;
+      if(data.confirm_password !== data.password) res.redirect('/');
+      else data.password = hash;
       // Filter variables
       for(var prop in data) {
         if(data[prop] === '') res.redirect('/');
@@ -70,7 +79,11 @@ app
               // Add a user in the database
               if(usernameIsValid === true && emailIsValid === true) {
                 userModel.add(data.firstname, data.lastname, data.email, data.username, data.password);
-                res.redirect('/');
+                req.session.firstname = data.firstname;
+                req.session.lastname = data.lastname;
+                req.session.email = data.email;
+                req.session.username = data.username;
+                res.redirect('/home');
               }
               else res.redirect('/');
             }
@@ -80,18 +93,13 @@ app
     });
   })
   .post('/login', function(req, res, next){
-    req.body.username;
-    req.body.password;
-    console.log(req.body);
+    req.session.email = req.body.email;
+    req.session.password = req.body.password;
+    console.log(req.session);
   })
-  .get('/home', function(req, res, next){
-    res.render('home.ejs');
-  })
-  .get('/playlist', function(req, res, next){
-    res.render('playlist.ejs');
-  })
-  .get('/search', function(req, res, next){
-    res.render('search.ejs');
+  .post('/logout', function(req, res, next){
+    req.session.destroy();
+    res.redirect('/');
   })
   .use(function(req, res, next) {
     res.redirect('/');
