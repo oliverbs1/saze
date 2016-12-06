@@ -13,34 +13,6 @@ body {
     height: 100px;
 }
 
-.header img {
-    width: 110px;
-    position: absolute;
-    top: 13px;
-    left: 57px;
-}
-
-.sign {
-    display: inline-block;
-    width: 495px;
-    overflow: hidden;
-    position: absolute;
-    top: 23px;
-    left: 850px;
-}
-
-.sign input {
-    height: 24px;
-    font-size: 14px;
-}
-
-.sign .ui-input-text {
-    display: inline-block;
-    float: left;
-    margin-right: 9px;
-    height: 25px;
-}
-
 .sign .ui-shadow {
     width: 112px;
     display: inline-block;
@@ -53,8 +25,29 @@ body {
     margin: 100px auto;
 }
 
-.signup h2 {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 40px;
+.ui-page-theme-a a,
+html .ui-bar-a a,
+html .ui-body-a a,
+html body .ui-group-theme-a a {
+    font-weight: 700;
+    position: absolute;
+    top: 32px;
+    left: 90%;
+    color: black;
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 5px 10px;
+    background-color: gainsboro;
+    text-decoration: none;
+}
+
+.ui-popup.ui-body-inherit {
+    width: 310px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: red;
+    position: absolute;
+    top: 139px;
+    right: 390px;
+    background-color: red;
 }
