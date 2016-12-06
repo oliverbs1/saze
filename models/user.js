@@ -1,8 +1,8 @@
-var mysql = require('../db');
+var mysql = require('./db');
 
 exports.add = function(f, l, a, e, u, p){
-  var sql = "INSERT INTO user (firstname, lastname, age, email, username, password) \ "
-            +"VALUES('"+f+"', '"+l+"', '"+a+"', '"+e+"', '"+u+"', '"+p+"')";
+  var sql = "INSERT INTO user (firstname, lastname, email, username, password) \ "
+            +"VALUES('"+f+"', '"+l+"', '"+e+"', '"+u+"', '"+p+"')";
   mysql(function(db){
     db.query(sql);
   });

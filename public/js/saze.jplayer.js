@@ -6,7 +6,7 @@ saze.jplayer = {};
 saze.jplayer.init = function(){
 //  saze.jplayer.playNewSong('Beyond.mp3', 'Nujabes', 'Beyond');
 //  saze.jplayer.playSong('Horizon.mp3', 'Nujabes', 'Horizon');
-};
+}
 
 saze.jplayer.playNewSong = function(fileName, artist, title){
   var jPlayer = '#jquery_jplayer_1';

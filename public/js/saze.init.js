@@ -4,4 +4,4 @@ var saze = saze || {};
 saze.init = function(){
   saze.dom.init();
   if(saze.jplayer !== undefined) saze.jplayer.init();
-};
+}

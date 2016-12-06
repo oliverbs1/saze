@@ -6,7 +6,8 @@ var fs = require('fs'),
     express = require('express'),
     ejs = require('ejs'),
     session = require('express-session'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    bcrypt = require('bcrypt');
 
 var app = express();
 
@@ -37,36 +38,43 @@ app
     var userModel = require(__dirname+'/models/user');
     // Store the data of the signup form
     var data = req.body;
-    data.age = Number(data.age);
-    // Filter variables
-    for(var prop in data) {
-      if(data[prop] === '') res.redirect('/');
-      if(prop !== 'age') {
-        if(typeof data[prop] !== 'string' || data[prop].length >= 42) res.redirect('/');
+      // Hash the password
+    var saltRounds = 12;
+    bcrypt.hash(data.password, saltRounds, function(err, hash){
+      if(err) throw err;
+      data.password = hash;
+      // Filter variables
+      for(var prop in data) {
+        if(data[prop] === '') res.redirect('/');
+        if(prop !== 'password') {
+          if(typeof data[prop] !== 'string' || data[prop].length >= 42) res.redirect('/');
+        }
       }
-    }
-    // Check the availability of email and username
-    var usernameIsValid;
-    var emailIsValid;
-    userModel.isset('email', data.email, 
-      function(response){
-        if(response) emailIsValid = false;
-        else emailIsValid = true;
-      }, 
-      function(){
-        userModel.isset('username', data.username,
-          function(response){
-            if(response) usernameIsValid = false;
-            else usernameIsValid = true;
-          },
-          function(){
-            // Add a user in the database
-            if(usernameIsValid === true && emailIsValid === true) {
-              userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
-              res.redirect('/');
+      // Check the availability of email and username
+      var usernameIsValid;
+      var emailIsValid;
+      userModel.isset('email', data.email, 
+        function(response){
+          if(response) emailIsValid = false;
+          else emailIsValid = true;
+        }, 
+        function(){
+          userModel.isset('username', data.username,
+            function(response){
+              if(response) usernameIsValid = false;
+              else usernameIsValid = true;
+            },
+            function(){
+              // Add a user in the database
+              if(usernameIsValid === true && emailIsValid === true) {
+                userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
+                res.redirect('/');
+              }
+              else res.redirect('/');
             }
-            else res.redirect('/');
-        });
+          );
+        }
+      );
     });
   })
   .post('/login', function(req, res, next){
