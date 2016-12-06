@@ -1,0 +1,60 @@
+body {
+    width: 100%;
+    position: relative;
+}
+
+.ui-overlay-a,
+.ui-page-theme-a,
+.ui-page-theme-a .ui-panel-wrapper {
+    background: url("http://www.mysoundbattle.com/wp-content/uploads/2013/12/foule-en-concert.jpg") no-repeat fixed center;
+}
+
+.header {
+    height: 100px;
+}
+
+.header img {
+    width: 110px;
+    position: absolute;
+    top: 13px;
+    left: 57px;
+}
+
+.sign {
+    display: inline-block;
+    width: 495px;
+    overflow: hidden;
+    position: absolute;
+    top: 23px;
+    left: 850px;
+}
+
+.sign input {
+    height: 24px;
+    font-size: 14px;
+}
+
+.sign .ui-input-text {
+    display: inline-block;
+    float: left;
+    margin-right: 9px;
+    height: 25px;
+}
+
+.sign .ui-shadow {
+    width: 112px;
+    display: inline-block;
+    float: left;
+    height: 38px;
+}
+
+.signup {
+    width: 400px;
+    margin: 100px auto;
+}
+
+.signup h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 40px;
+}

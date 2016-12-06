@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="meyer.css">
+    <link rel="stylesheet" href="public/lib/jqm/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="public/lib/jqm/jquery-1.11.1.min.js"></script>
+    <script src="public/lib/jqm/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div class="header form-container">
+        <img src="saze-logo.png" alt="">
+        <form class="sign" method="post" action="/login" id="login-form" data-ajax="false">
+            <input type="text" placeholder="Username" name="username" id="login-username" value="">
+            <input type="password" placeholder="Password" name="password" id="login-password" autocomplete="off">
+            <button class="ui-shadow ui-btn ui-mini ui-corner-all">Sign in</button>
+        </form>
+
+    </div>
+
+    <div class="signup form-container">
+        <h2>Sign Up</h2>
+
+        <form method="post" action="/signup" id="signup-form" data-ajax="false">
+            <input type="text" placeholder="Name" name="Name" id="text-basic" value="">
+            <input type="text" placeholder="Firstname" name="text-basic" id="text-basic" value="">
+            <input type="date" placeholder="Birthday" name="date" id="date" value="">
+            <input type="text" placeholder="Email" name="email" id="signup-email" value="">
+            <input type="text" placeholder="Username" name="username" id="signup-username" value="">
+            <input type="password" placeholder="Password" name="password" id="signup-password" autocomplete="off">
+            <button class="ui-btn ui-mini ui-corner-all">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
