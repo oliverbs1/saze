@@ -38,6 +38,8 @@ app
     var userModel = require(__dirname+'/models/user');
     // Store the data of the signup form
     var data = req.body;
+  console.log(data.username);
+  console.log(data.username.length);
       // Hash the password
     var saltRounds = 12;
     bcrypt.hash(data.password, saltRounds, function(err, hash){
@@ -67,7 +69,7 @@ app
             function(){
               // Add a user in the database
               if(usernameIsValid === true && emailIsValid === true) {
-                userModel.add(data.firstname, data.lastname, data.age, data.email, data.username, data.password);
+                userModel.add(data.firstname, data.lastname, data.email, data.username, data.password);
                 res.redirect('/');
               }
               else res.redirect('/');

@@ -1,6 +1,6 @@
 var mysql = require('./db');
 
-exports.add = function(f, l, a, e, u, p){
+exports.add = function(f, l, e, u, p){
   var sql = "INSERT INTO user (firstname, lastname, email, username, password) \ "
             +"VALUES('"+f+"', '"+l+"', '"+e+"', '"+u+"', '"+p+"')";
   mysql(function(db){
