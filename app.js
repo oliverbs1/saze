@@ -95,7 +95,17 @@ app
   .post('/login', function(req, res, next){
     req.session.email = req.body.email;
     req.session.password = req.body.password;
-    console.log(req.session);
+    var userModel = require(__dirname+'/models/user');
+    var result = userModel.getPassword(req.body.email, function(err, originalHash){
+      if(err) res.redirect('/');
+      console.log(originalHash);
+    });
+    
+  
+//    var saltRounds = 12; 
+//    bcrypt.hash(req.body.pasword, saltRounds, function(err, hash){
+////      COMPARE HASHES
+//    });
   })
   .post('/logout', function(req, res, next){
     req.session.destroy();

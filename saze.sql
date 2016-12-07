@@ -1,7 +1,7 @@
 #
 # SQL Export
 # Created by Querious (1055)
-# Created: 2 December 2016 at 20:44:11 GMT+1
+# Created: 7 December 2016 at 09:22:37 GMT+1
 # Encoding: Unicode (UTF-8)
 #
 
@@ -27,9 +27,8 @@ CREATE TABLE `user` (
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `age` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(128) NOT NULL DEFAULT '',
   `profile_picture` varchar(45) DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -38,7 +37,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `idx_username` (`username`) USING BTREE,
   UNIQUE KEY `idx_profile_picture` (`profile_picture`) USING BTREE,
   KEY `idx_id` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `playlist` (
@@ -81,39 +80,6 @@ CREATE TABLE `playlist_track` (
   CONSTRAINT `playlist_track_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `playlist_track_ibfk_2` FOREIGN KEY (`track_id`) REFERENCES `track` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-
-SET FOREIGN_KEY_CHECKS = @PREVIOUS_FOREIGN_KEY_CHECKS;
-
-
-SET @PREVIOUS_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS;
-SET FOREIGN_KEY_CHECKS = 0;
-
-
-LOCK TABLES `user` WRITE;
-ALTER TABLE `user` DISABLE KEYS;
-ALTER TABLE `user` ENABLE KEYS;
-UNLOCK TABLES;
-
-
-LOCK TABLES `playlist` WRITE;
-ALTER TABLE `playlist` DISABLE KEYS;
-ALTER TABLE `playlist` ENABLE KEYS;
-UNLOCK TABLES;
-
-
-LOCK TABLES `track` WRITE;
-ALTER TABLE `track` DISABLE KEYS;
-ALTER TABLE `track` ENABLE KEYS;
-UNLOCK TABLES;
-
-
-LOCK TABLES `playlist_track` WRITE;
-ALTER TABLE `playlist_track` DISABLE KEYS;
-ALTER TABLE `playlist_track` ENABLE KEYS;
-UNLOCK TABLES;
 
 
 
