@@ -1,7 +1,11 @@
 #
 # SQL Export
 # Created by Querious (1055)
+<<<<<<< HEAD
 # Created: 2 December 2016 at 20:44:11 GMT+1
+=======
+# Created: 7 December 2016 at 09:22:37 GMT+1
+>>>>>>> master
 # Encoding: Unicode (UTF-8)
 #
 
@@ -27,9 +31,14 @@ CREATE TABLE `user` (
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
+<<<<<<< HEAD
   `age` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
+=======
+  `username` varchar(45) NOT NULL,
+  `password` varchar(128) NOT NULL DEFAULT '',
+>>>>>>> master
   `profile_picture` varchar(45) DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -38,7 +47,11 @@ CREATE TABLE `user` (
   UNIQUE KEY `idx_username` (`username`) USING BTREE,
   UNIQUE KEY `idx_profile_picture` (`profile_picture`) USING BTREE,
   KEY `idx_id` (`id`) USING BTREE
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+>>>>>>> master
 
 
 CREATE TABLE `playlist` (
@@ -88,6 +101,7 @@ CREATE TABLE `playlist_track` (
 SET FOREIGN_KEY_CHECKS = @PREVIOUS_FOREIGN_KEY_CHECKS;
 
 
+<<<<<<< HEAD
 SET @PREVIOUS_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -121,3 +135,5 @@ UNLOCK TABLES;
 SET FOREIGN_KEY_CHECKS = @PREVIOUS_FOREIGN_KEY_CHECKS;
 
 
+=======
+>>>>>>> master
