@@ -1,15 +1,13 @@
 var saze = saze || {};
 
-// All the interactions with the html dom
+// All the interactions with the HTML DOM
 saze.dom = {};
 
 saze.dom.init = function(){
   if(window.location.pathname === '/') saze.dom.index();
-//  saze.dom.enableSubmit();
 }
+// DOM of 'index' Page
 saze.dom.index = function(){
-//  saze.dom.index
-  
   function expendLogin() {
       document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
       document.querySelector('.cont_form_login').style.display = "block";
@@ -46,10 +44,4 @@ saze.dom.index = function(){
   $('.btn_sign_up').click(expendSignup);
   $('.cont_form_login>a').click(contractAll);
   $('.cont_form_sign_up>a').click(contractAll);
-//  $('body').on('click', '#login-form button', function(){
-//    $('#login-form').submit();
-//  });
-//  $('body').on('click', '#signup-form button', function(){
-//    $('#login-form').submit();
-//  });
 }

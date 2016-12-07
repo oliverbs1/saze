@@ -64,11 +64,11 @@ app
       // Check the availability of email and username
       var usernameIsValid;
       var emailIsValid;
-      userModel.isset('email', data.email, 
+      userModel.isset('email', data.email,
         function(response){
           if(response) emailIsValid = false;
           else emailIsValid = true;
-        }, 
+        },
         function(){
           userModel.isset('username', data.username,
             function(response){
@@ -95,21 +95,14 @@ app
   .post('/login', function(req, res, next){
     req.session.email = req.body.email;
     req.session.password = req.body.password;
-<<<<<<< HEAD
-    console.log(req.session);
-=======
     var userModel = require(__dirname+'/models/user');
     var result = userModel.getPassword(req.body.email, function(err, originalHash){
-      if(err) res.redirect('/');
-      console.log(originalHash);
+      if(err) throw err;
+      bcrypt.compare(req.body.pasword, originalHash, function(err, res){
+        console.log(res);
+      });
     });
-    
-  
-//    var saltRounds = 12; 
-//    bcrypt.hash(req.body.pasword, saltRounds, function(err, hash){
-////      COMPARE HASHES
-//    });
->>>>>>> master
+
   })
   .post('/logout', function(req, res, next){
     req.session.destroy();

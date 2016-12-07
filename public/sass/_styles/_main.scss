@@ -10,3 +10,22 @@ a, p {
   font-family: 'Open Sans';
   font-size: 12px;
 }
+::-webkit-input-placeholder {
+  font-size: italic;
+  font-size: 14px;
+  font-family: 'Open Sans i';
+  color: lightgray;
+}
+::-moz-placeholder {
+  color: lightgray;
+}
+:-ms-input-placeholder {
+  color: lightgray;
+}
+:-moz-placeholder {
+  color: lightgray;
+}
+input {
+  box-sizing: border-box;
+  padding-left: 20px !important;
+}
