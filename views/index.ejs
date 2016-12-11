@@ -3,65 +3,65 @@
 <% include partials/head.ejs %>
 <body>
   <div data-role="page" id="index">
-      <div class="cotn_principal" data-enhance="false">
-        <div class="cont_centrar">
-            <div class="cont_login">
-                <div class="cont_info_log_sign_up">
-                    <div class="col_md_login">
-                        <div class="cont_ba_opcitiy">
-                            <h2>LOGIN</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <button class="btn_login">LOGIN</button>
-                        </div>
-                    </div>
-                    <div class="col_md_sign_up">
-                        <div class="cont_ba_opcitiy">
-                            <h2>SIGN UP</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <button class="btn_sign_up">SIGN UP</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cont_back_info">
-                    <div class="cont_img_back_grey">
-                        <img src="img/foule.jpg" alt=""/>
-                    </div>
-                </div>
-                <div class="cont_forms">
-                    <div class="cont_img_back_">
-                        <img src="img/foule.jpg" alt=""/>
-                    </div>
-                    
-                    <form method="post" action="/login" id="login-form" data-ajax="false">
-                      <div class="cont_form_login">
-                          <a href="#"><i class="material-icons">&#xE5C4;</i></a>
+    <div class="cotn_principal" data-enhance="false">
+      <div class="cont_centrar">
+          <div class="cont_login">
+              <div class="cont_info_log_sign_up">
+                  <div class="col_md_login">
+                      <div class="cont_ba_opcitiy">
                           <h2>LOGIN</h2>
-                          <input type="text" name="email" placeholder="Email" />
-                          <input type="password" name="password" placeholder="Password" />
+                          <p>If you already have an account, come closer</p>
                           <button class="btn_login">LOGIN</button>
                       </div>
-                    </form>
-                    
-                    <form method="post" action="/signup" id="signup-form" data-ajax="false">
-                      <div class="cont_form_sign_up">
-                          <a href="#"><i class="material-icons">&#xE5C4;</i></a>
+                  </div>
+                  <div class="col_md_sign_up">
+                      <div class="cont_ba_opcitiy">
                           <h2>SIGN UP</h2>
-                          <input type="text" name="firstname" placeholder="Firstname" />
-                          <input type="text" name="lastname" placeholder="Lastname" />
-                          <input type="text" name="email" placeholder="Email" />
-                          <input type="text" name="username" placeholder="Username" />
-                          <input type="password" name="password" placeholder="Password" />
-                          <input type="password"  name="confirm_password" placeholder="Confirm Password" />
+                          <p>Sign up for free, listen all our musics, upload your songs, and share in live your talents all around the world !</p>
                           <button class="btn_sign_up">SIGN UP</button>
                       </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
+              </div>
+
+              <div class="cont_back_info">
+                  <div class="cont_img_back_grey">
+                      <img src="img/foule.jpg" alt=""/>
+                  </div>
+              </div>
+              <div class="cont_forms">
+                  <div class="cont_img_back_">
+                      <img src="img/foule.jpg" alt=""/>
+                  </div>
+
+                  <form method="post" action="/login" id="login-form" data-ajax="false">
+                    <div class="cont_form_login">
+                        <a href="#"><i class="material-icons">&#xE5C4;</i></a>
+                        <h2>LOGIN</h2>
+                        <input type="text" name="email" placeholder="Email" />
+                        <input type="password" name="password" placeholder="Password" />
+                        <button class="btn_login">LOGIN</button>
+                    </div>
+                  </form>
+
+                  <form method="post" action="/signup" id="signup-form" data-ajax="false">
+                    <div class="cont_form_sign_up">
+                        <a href="#"><i class="material-icons">&#xE5C4;</i></a>
+                        <h2>SIGN UP</h2>
+                        <input type="text" name="firstname" placeholder="Firstname" />
+                        <input type="text" name="lastname" placeholder="Lastname" />
+                        <input type="text" name="email" placeholder="Email" />
+                        <input type="text" name="username" placeholder="Username" />
+                        <input type="password" name="password" placeholder="Password" />
+                        <input type="password"  name="confirm_password" placeholder="Confirm Password" />
+                        <button class="btn_sign_up">SIGN UP</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
   </div>
-  
+  </div>
+
   <% include partials/limited-scripts.ejs %>
 </body>
 </html>

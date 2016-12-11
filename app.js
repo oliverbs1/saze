@@ -2,14 +2,17 @@
 var httpPort = 1316;
 
 // NPM Package
-var fs = require('fs'),
-    express = require('express'),
+var express = require('express'),
+    app = express(),
+    fs = require('fs'),
     ejs = require('ejs'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     bcrypt = require('bcrypt');
 
-var app = express();
+// Custom module
+var userModel = require(__dirname+'/models/user'),
+    toolCtrl = require(__dirname+'/controllers/tool');
 
 // Set the HTML template engine to EJS
 app.set('view engine', 'ejs');
@@ -28,6 +31,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
+
 // Routing
 app
   .get('/', function(req, res, next){
@@ -45,7 +49,6 @@ app
     res.render('search.ejs');
   })
   .post('/signup', function(req, res, next){
-    var userModel = require(__dirname+'/models/user');
     // Store the data of the signup form
     var data = req.body;
       // Hash the password
@@ -79,10 +82,7 @@ app
               // Add a user in the database
               if(usernameIsValid === true && emailIsValid === true) {
                 userModel.add(data.firstname, data.lastname, data.email, data.username, data.password);
-                req.session.firstname = data.firstname;
-                req.session.lastname = data.lastname;
-                req.session.email = data.email;
-                req.session.username = data.username;
+                toolCtrl.connect(req, req.body.email);
                 res.redirect('/home');
               }
               else res.redirect('/');
@@ -93,18 +93,21 @@ app
     });
   })
   .post('/login', function(req, res, next){
-    req.session.email = req.body.email;
-    req.session.password = req.body.password;
-    var userModel = require(__dirname+'/models/user');
-    var result = userModel.getPassword(req.body.email, function(err, originalHash){
-      if(err) throw err;
-      bcrypt.compare(req.body.pasword, originalHash, function(err, res){
-        console.log(res);
-      });
+    userModel.isset('email', req.body.email, function(response){
+      if(response) {
+        userModel.getData(req.body.email, function(userData){
+          bcrypt.compare(req.body.password, userData.password, function(err, passwordIsValid){
+            if(passwordIsValid) {
+              // toolCtrl.connect([req, res, next], req.body.email);
+              toolCtrl.connect(req.body.email, {req: req, res: res, next: next});
+            }
+          });
+        });
+      }
+      else res.redirect('/');
     });
-
   })
-  .post('/logout', function(req, res, next){
+  .get('/logout', function(req, res, next){
     req.session.destroy();
     res.redirect('/');
   })
