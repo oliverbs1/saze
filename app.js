@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 
 // Grant access for this folders:
 app.use('/', express.static(__dirname+'/public/'));
+app.use('/', express.static(__dirname+'/public/fonts/font-awesome-4.7.0/'));
 app.use('/tracks/', express.static(__dirname+'/data/tracks'));
 
 // Allow to recover the data of a post http request
@@ -47,6 +48,9 @@ app
   })
   .get('/search', function(req, res, next){
     res.render('search.ejs');
+  })
+  .get('/settings', function(req, res, nrext){
+    res.render('settings.ejs');
   })
   .post('/signup', function(req, res, next){
     // Store the data of the signup form
@@ -111,8 +115,11 @@ app
     req.session.destroy();
     res.redirect('/');
   })
+  .get('/404', function(req, res, next){
+    res.render('404.ejs');
+  })
   .use(function(req, res, next) {
-    res.redirect('/');
+    res.redirect('/404');
   });
 
 // Launch node server
