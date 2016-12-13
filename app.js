@@ -102,7 +102,6 @@ app
         userModel.getData(req.body.email, function(userData){
           bcrypt.compare(req.body.password, userData.password, function(err, passwordIsValid){
             if(passwordIsValid) {
-              // toolCtrl.connect([req, res, next], req.body.email);
               toolCtrl.connect(req.body.email, {req: req, res: res, next: next});
             }
           });

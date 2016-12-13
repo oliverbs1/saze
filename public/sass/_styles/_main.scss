@@ -5,63 +5,6 @@ html, body {
 .ui-page-theme-a, .ui-bar-inherit {
   text-shadow: none !important;
 }
-header {
-  padding-left: 15px;
-  text-align: center;
-  background-color: #CC3333 !important;
-  border: 0 !important;
-}
-#menu {
-  display: inline-block !important;
-  float: right;
-  margin-top: 8px;
-  width: 150px;
-  margin-right: 20px;
-}
-#menu > ul > li {
-  display: inline-block;
-}
-#menu > ul > li:first-child {
-  float: left;
-}
-#menu > ul > li:last-child {
-  float: right
-}
-#menu .submenu {
-  display: none;
-  position: absolute;
-  background-color: #d05252;
-}
-#menu .submenu:hover {
-  display: block;
-}
-#menu i {
-  font-size: 30px !important;
-  color: white;
-  margin-right: 10px;
-  transition: color 0.3s;
-}
-#menu i:hover {
-  color: #B8B8B8;
-}
-header .ui-title {
-  display: inline-block !important;
-  margin: 0 !important;
-  float: left;
-}
-header input[data-type='search'] {
-  padding-left: 30px !important;
-}
-header .ui-input-search {
-  display: inline-block;
-  vertical-align: top;
-  width: 50%;
-}
-h1 a {
-  font-family: 'Oswald';
-  font-size: 20px !important;
-  color: white !important;
-}
 h2 {
   font-family: 'Oswald';
   font-size: 17px;

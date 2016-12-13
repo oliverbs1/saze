@@ -1,4 +1,5 @@
-var userModel = require(__dirname+'/../models/user');
+var aes = require('crypto-js/aes'),
+    userModel = require(__dirname+'/../models/user');
 
 exports.connect = function(usrEmail, env){
   userModel.getData(usrEmail, function(usrData){
@@ -12,4 +13,9 @@ exports.connect = function(usrEmail, env){
     env.req.session.create_date = usrData.create_date;
     env.res.redirect('/home');
   });
+};
+
+exports.generateToken = function(message){
+  // var encryption = aes.encrypt(message, 'kl8:21?P@o0');
+  // var aes.decrypt('');
 };
