@@ -5,24 +5,13 @@
 
   <div data-role="page" id="home">
     <% include partials/header.ejs %>
-    <main>
-      <aside id="nav-aside">
-        <div class="track-container">
-          <h2>My Tracks</h2>
-        </div>
-        <div class="track-container">
-          <h2>My Playlists</h2>
-        </div>
-        <div class="live-audio-container">
-          <h2>Live Audio</h2>
-        </div>
-      </aside>
+    <main id="main">
+      <% include partials/player-aside.ejs %>
+      <main id="main-content">
 
-      <aside id="player-aside">
-        <p>test</p>
-      </aside>
+      </main>
+      <% include partials/nav-aside.ejs %>
     </main>
-    <!-- <% include partials/jplayer.ejs %> -->
   </div>
   <% include partials/full-scripts.ejs %>
 </body>

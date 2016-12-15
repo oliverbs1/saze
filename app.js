@@ -36,21 +36,44 @@ app.use(session({
 // Routing
 app
   .get('/', function(req, res, next){
-    if(req.session.username === undefined) res.render('index.ejs');
-    else res.redirect('/home');
+    if(req.session.token) res.redirect('/home');
+    res.render('index.ejs');
   })
   .get('/home', function(req, res, next){
-    console.log(req.session);
+    if(!req.session.token) res.redirect('/');
     res.render('home.ejs');
   })
-  .get('/playlist', function(req, res, next){
-    res.render('playlist.ejs');
-  })
   .get('/search', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
     res.render('search.ejs');
   })
-  .get('/settings', function(req, res, nrext){
-    res.render('settings.ejs');
+  .get('/upload', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('upload.ejs');
+  })
+  .get('/live', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('live.ejs');
+  })
+  .get('/my/tracks', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('mytracks.ejs');
+  })
+  .get('/my/playlists', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('myplaylists.ejs');
+  })
+  .get('/my/settings', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('mysettings.ejs');
+  })
+  .get('/my/account', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('myaccount.ejs');
+  })
+  .get('/logout', function(req, res, next){
+    req.session.destroy();
+    res.redirect('/');
   })
   .post('/signup', function(req, res, next){
     // Store the data of the signup form
@@ -63,7 +86,7 @@ app
       else data.password = hash;
       // Filter variables
       for(var prop in data) {
-        if(data[prop] === '') res.redirect('/');
+        if(data[prop] === '' || data[prop].indexOf(',') !== -1) res.redirect('/');
         if(prop !== 'password') {
           if(typeof data[prop] !== 'string' || data[prop].length >= 42) res.redirect('/');
         }
@@ -102,23 +125,35 @@ app
         userModel.getData(req.body.email, function(userData){
           bcrypt.compare(req.body.password, userData.password, function(err, passwordIsValid){
             if(passwordIsValid) {
-              toolCtrl.connect(req.body.email, {req: req, res: res, next: next});
+              toolCtrl.connect(req.body.email, req, res);
+              // res.redirect('/home');
             }
+            else res.redirect('/');
           });
         });
       }
       else res.redirect('/');
     });
   })
-  .get('/logout', function(req, res, next){
-    req.session.destroy();
-    res.redirect('/');
-  })
   .get('/404', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
     res.render('404.ejs');
+    res.end();
+  })
+  .get('/500', function(req, res, next){
+    if(!req.session.token) res.redirect('/');
+    res.render('500.ejs');
+    res.end();
   })
   .use(function(req, res, next) {
-    res.redirect('/404');
+    res.status(404);
+    res.writeHead(302, {'Location': '/404'});
+    res.end();
+  })
+  .use(function(req, res, next) {
+    res.status(500);
+    res.writeHead(302, {'Location': '/500'});
+    res.end();
   });
 
 // Launch node server

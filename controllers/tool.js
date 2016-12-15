@@ -1,21 +1,27 @@
-var aes = require('crypto-js/aes'),
+var crypto = require('crypto-js'),
+    cryptoKey = 'kl8:21?P@o0',
     userModel = require(__dirname+'/../models/user');
+    toolCtrl = require('./tool.js');
 
-exports.connect = function(usrEmail, env){
+exports.connect = function(usrEmail, req, res){
   userModel.getData(usrEmail, function(usrData){
-    env.req.session.userId = usrData.id;
-    env.req.session.firstname = usrData.firstname;
-    env.req.session.lastname = usrData.lastname;
-    env.req.session.email = usrData.email;
-    env.req.session.username = usrData.username;
-    env.req.session.password = usrData.password;
-    env.req.session.profile_picture = usrData.profile_picture;
-    env.req.session.create_date = usrData.create_date;
-    env.res.redirect('/home');
+    var token = toolCtrl.generateToken(usrData.id+','
+                                      +usrData.firstname+','
+                                      +usrData.lastname+','
+                                      +usrData.email+','
+                                      +usrData.username+',');
+    req.session.token = token;
+    res.redirect('/home');
   });
-};
+}
+
 
 exports.generateToken = function(message){
-  // var encryption = aes.encrypt(message, 'kl8:21?P@o0');
-  // var aes.decrypt('');
-};
+  var token = crypto.AES.encrypt(message, cryptoKey).toString();
+  return token;
+}
+
+exports.decryptToken = function(token){
+  clearToken = crypto.AES.decrypt(token, cryptoKey).toString(crypto.enc.Utf8);
+  return clearToken;
+}

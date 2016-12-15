@@ -5,14 +5,17 @@
 
   <div data-role="page" id="e404">
     <% include partials/header.ejs %>
-    <main>
-      <div>
-        <h3>Error 404</h2>
-        <p>Oh ! You seem lost...</p>
-        <p>Checkout the header upstairs <br>or the menu on your right</p>
-      </div>
+    <main id="main">
+      <% include partials/player-aside.ejs %>
+      <% include partials/nav-aside.ejs %>
+      <main id="main-content">
+        <div>
+          <h3>Error 404</h2>
+          <p>Oh ! You seem lost...</p>
+          <p>Checkout the header upstairs <br>or the menu on your right</p>
+        </div>
+      </main>
     </main>
-    <% include partials/jplayer.ejs %>
   </div>
   <% include partials/full-scripts.ejs %>
 </body>
