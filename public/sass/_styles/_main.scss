@@ -4,6 +4,7 @@ html, body {
 }
 .ui-page-theme-a, .ui-bar-inherit {
   text-shadow: none !important;
+
 }
 h2 {
   font-family: 'Oswald';
@@ -30,8 +31,7 @@ a {
 ::-moz-placeholder {
   color: lightgray;
 }
-:-ms-input-plac
-eholder {
+:-ms-input-placeholder {
   color: lightgray;
 }
 :-moz-placeholder {
@@ -40,4 +40,10 @@ eholder {
 input {
   box-sizing: border-box;
   padding-left: 20px !important;
+}
+
+@include keyframe-rotate();
+
+.infinite-rotate {
+  @include animation-rotate(rotate, 2s, linear);
 }

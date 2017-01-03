@@ -20,7 +20,9 @@ app.set('view engine', 'ejs');
 // Grant access for this folders:
 app.use('/', express.static(__dirname+'/public/'));
 app.use('/', express.static(__dirname+'/public/fonts/font-awesome-4.7.0/'));
-app.use('/tracks/', express.static(__dirname+'/data/tracks'));
+app.use('/images/', express.static(__dirname+'/public/lib/jqm/images/'));
+app.use('/tracks/', express.static(__dirname+'/data/tracks/'));
+app.use('/cover/', express.static(__dirname+'/data/cover/'));
 
 // Allow to recover the data of a post http request
 app.use(bodyParser.urlencoded({extended: false}));
@@ -36,39 +38,39 @@ app.use(session({
 // Routing
 app
   .get('/', function(req, res, next){
-    if(req.session.token) res.redirect('/home');
+    if(req.session.token) return res.redirect('/home');
     res.render('index.ejs');
   })
   .get('/home', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('home.ejs');
   })
   .get('/search', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('search.ejs');
   })
   .get('/upload', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('upload.ejs');
   })
   .get('/live', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('live.ejs');
   })
   .get('/my/tracks', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('mytracks.ejs');
   })
   .get('/my/playlists', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('myplaylists.ejs');
   })
   .get('/my/settings', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('mysettings.ejs');
   })
   .get('/my/account', function(req, res, next){
-    if(!req.session.token) res.redirect('/');
+    if(!req.session.token) return res.redirect('/');
     res.render('myaccount.ejs');
   })
   .get('/logout', function(req, res, next){
@@ -110,7 +112,6 @@ app
               if(usernameIsValid === true && emailIsValid === true) {
                 userModel.add(data.firstname, data.lastname, data.email, data.username, data.password);
                 toolCtrl.connect(req, req.body.email);
-                res.redirect('/home');
               }
               else res.redirect('/');
             }
@@ -126,7 +127,6 @@ app
           bcrypt.compare(req.body.password, userData.password, function(err, passwordIsValid){
             if(passwordIsValid) {
               toolCtrl.connect(req.body.email, req, res);
-              // res.redirect('/home');
             }
             else res.redirect('/');
           });

@@ -5,6 +5,7 @@ saze.dom = {};
 
 saze.dom.init = function(){
   if(window.location.pathname === '/') saze.dom.index();
+  if(window.location.pathname !== '/') saze.dom.playerAside();
 }
 // DOM of 'index' Page
 saze.dom.index = function(){
@@ -44,4 +45,12 @@ saze.dom.index = function(){
   $('.btn_sign_up').click(expendSignup);
   $('.cont_form_login>a').click(contractAll);
   $('.cont_form_sign_up>a').click(contractAll);
+}
+
+saze.dom.playerAside = function(){
+  function setVinylMargin(){
+    var value = $('#vinyl').height() + 20;
+    $('#vinyl-container').css('margin-bottom', value);
+  }
+  setVinylMargin();
 }

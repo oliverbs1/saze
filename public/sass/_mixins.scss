@@ -1,0 +1,42 @@
+@mixin keyframe-rotate(){
+  @keyframes rotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes rotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin animation-rotate($name, $duration, $curve:ease, $delay:0s, $iteration:infinite, $direction:normal){
+  -webkit-animation: $name $duration $curve $delay $iteration $direction;
+  -moz-animation: $name $duration $curve $delay $iteration $direction;
+  -ms-animation: $name $duration $curve $delay $iteration $direction;
+  -o-animation: $name $duration $curve $delay $iteration $direction;
+  animation: $name $duration $curve $delay $iteration $direction;
+}
